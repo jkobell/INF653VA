@@ -15,25 +15,26 @@
 $listingId = '';
 $data = array();
 
-
+    //use listingId to get filename for reading from flat file
     if (isset($_POST["listingId"]))
     {
-        $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING);
+        $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING); //clean
         $dataFilePath = ".\\listings\\".$listingId.".txt";
         $fileContent = file_get_contents($dataFilePath);
         if (!empty($fileContent))
         {
             $data = unserialize($fileContent);        
-            echo '<h1>'.$listingId.' DETAILS</h1>';            
+            echo '<h1>'.$listingId.' DETAILS</h1>'; //set listingId number in header element           
         }
         else
         {
+            //user error message if file is empty
             echo '<h3>Listing: '.$listingId.' is no longer available. Please choose a different listing.</h3>';
         }
     }
 
 echo '</div>';
-if (!empty($data))
+if (!empty($data))//check for empty array
 {
     echo '<div id="detailDiv">';
     echo '<img id="imgFull" src='.$data["Photo Full"].'></img>';
@@ -50,12 +51,10 @@ if (!empty($data))
             <span id="detailValue">'.$data["Description"].'</span></p>';
     echo '</div>';
 }
-
-
 ?>
 <footer>	
     <p class="copyright">
-        &copy; <?php echo date("Y"); ?> INF653 - James Kobell
+        &copy; <?php echo date("Y"); ?> INF653 - CMS - James Kobell
     </p>
 </footer>
 </body>

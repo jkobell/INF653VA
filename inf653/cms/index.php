@@ -7,30 +7,29 @@
   <link rel="stylesheet" type="text/css" href=".\style\main.css">
    <!--include required for Bootstrap  -->
 </head>
-
 <body id="indexBody">
     <div id="indexHeaderDiv">
         <h3 id="indexHeader">NexTechClassifieds.com - Top ten picks</h3>
     </div>
     <div id="list">
-<?php
+<?php //begin php
 
 //get all filenames in directory 'Listings' to $listingsFilenames
 $listingsFilenames = glob('./listings/*.txt');
-//print_r($listingsFilenames);
-echo '</br>';
-echo '</br>';
+
+//form with table
 echo '<form method="post" action= "/inf653/cms/detail.php">';
 echo '<table id="table">';
 echo '<tr>';
 echo '<th>Details</th><th>Photo</th><th>Name</th><th>Price</th><th>Location</th><th>Category</th>';
 echo '</tr>';
 
+//loop through collection of files. Get each files content and create a table row
 foreach ($listingsFilenames as $value)
     {
         $dataFilePath = $value;
         $fileContent = file_get_contents($dataFilePath);
-        if (!empty($fileContent))
+        if (!empty($fileContent)) //check empty file
         {
             $data = unserialize($fileContent);            
             echo '<tr>';
@@ -47,14 +46,12 @@ foreach ($listingsFilenames as $value)
 
 echo '</table>';
 echo '</form>';
-
-
-?>
+?> <!--end php-->
 
 </div>
 <footer>	
     <p class="copyright">
-        &copy; <?php echo date("Y"); ?> INF653 - James Kobell
+        &copy; <?php echo date("Y"); ?> INF653 - CMS - James Kobell
     </p>
 </footer>
 </body>
