@@ -32,10 +32,7 @@ foreach ($listingsFilenames as $value)
         $fileContent = file_get_contents($dataFilePath);
         if (!empty($fileContent))
         {
-            $data = unserialize($fileContent);
-            //print_r($data);
-            //echo '</br>';
-            //echo '</br>';
+            $data = unserialize($fileContent);            
             echo '<tr>';
             echo '<td><input type="submit" name="listingId" value="'.htmlspecialchars($data["Listing ID"]).'"></td>';             
             echo '<td><a target="_self" href="/inf653/cms/images/full/'.htmlspecialchars($data["Listing ID"]).'_full.jpeg">

@@ -109,6 +109,7 @@ Salina KS 67401
 785-823-seven two nine seven";
 */
 
+/*
 $listing = '1845303';
 $name = 'Terry bass fishing boat';
 $photoFull = '/inf653/cms/images/full/1845303_full.jpeg';
@@ -137,18 +138,30 @@ foreach ($data as $key => $value) {
     echo "key {$key} is {$value}\n";    
 }
 
-$dataFilePath = ".\\listings\\".$listing.".txt";
+$dataFilePath = './listings/'.$listing.'.txt';
 file_put_contents($dataFilePath, serialize($data));
 
 echo "Data is in {$dataFilePath}";
-
-
-//test reading from file
-/*
-$dataFile = '.\listings\1851080.txt';
-$data = unserialize(file_get_contents($dataFile));
-print_r($data);
 */
+
+//test reading from files
+$listingsFilenames = glob('./listings/*.txt');
+foreach ($listingsFilenames as $value)
+    {
+        $dataFilePath = $value;
+        $fileContent = file_get_contents($dataFilePath);
+        if (!empty($fileContent))
+        {
+            $data = unserialize($fileContent);
+            print_r($data);
+            echo '</br>';
+            echo '</br>';
+        }
+    }
+
+
+
+
 
 
 
