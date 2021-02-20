@@ -4,7 +4,7 @@
   <title>NexTechClassifieds.com | Details Page</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href=".\style\main.css">
+  <link rel="stylesheet" type="text/css" href="./style/main.css">
    <!--include required for Bootstrap  -->
 </head>
 
@@ -19,7 +19,7 @@ $data = array();
     if (isset($_POST["listingId"]))
     {
         $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING); //clean
-        $dataFilePath = ".\\listings\\".$listingId.".txt";
+        $dataFilePath = './listings/'.$listingId.'.txt';
         $fileContent = file_get_contents($dataFilePath);
         if (!empty($fileContent))
         {

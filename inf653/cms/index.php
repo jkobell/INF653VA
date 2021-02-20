@@ -4,7 +4,7 @@
   <title>NexTechClassifieds.com | Top ten picks</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href=".\style\main.css">
+  <link rel="stylesheet" type="text/css" href="./style/main.css">
    <!--include required for Bootstrap  -->
 </head>
 <body id="indexBody">
