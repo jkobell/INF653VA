@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>NexTechClassifieds.com | Details Page</title>
+  <title>NexTechClassifieds.com | Top Picks</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="./style/main.css">
-   <!--include required for Bootstrap  -->
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
 
-<body id="detailBody">
-    <div id="detailTopDiv">
+  <link rel="stylesheet" type="text/css" href="./style/main.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+  
+</head>
+<body>
 
 <?php
+
 $listingId = '';
 $data = array();
 
@@ -19,41 +25,54 @@ $data = array();
     if (isset($_POST["listingId"]))
     {
         $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING); //clean
-        $dataFilePath = './listings/'.$listingId.'.txt';
+        $dataFilePath = ".\\listings\\".$listingId.".txt";
         $fileContent = file_get_contents($dataFilePath);
         if (!empty($fileContent))
         {
             $data = unserialize($fileContent);        
-            echo '<h1>'.$listingId.' DETAILS</h1>'; //set listingId number in header element           
-        }
+            echo '<nav class="navbar bg-dark justify-content-center">';
+            echo '<span class= "navbar-brand text-white font-weight-bold text-center">'.$listingId.' - Details</span>';//set listingId number in header element 
+            echo '</nav>';           
+        }       
         else
         {
-            //user error message if file is empty
-            echo '<h3>Listing: '.$listingId.' is no longer available. Please choose a different listing.</h3>';
+            include_once 'error.php';
         }
     }
-
-echo '</div>';
-if (!empty($data))//check for empty array
-{
-    echo '<div id="detailDiv">';
-    echo '<img id="imgFull" src='.$data["Photo Full"].'></img>';
-    echo '<h2 id="detailH2">'.$data["Name"].'</h2>';
-    echo '<p id="inlineP"><span id="detailName">Price: </span>
-            <span id="detailValue">'.$data["Price"].'</span></p>';
-    echo '<p id="inlineP"><span id="detailName">Location: </span>
-            <span id="detailValue">'.$data["Location"].'</span></p>';
-    echo '<p id="inlineP"><span id="detailName">Listing URL: </span>
-            <span id="detailValue"><a href="'.$data["Listing URL"].'">NexTechClassifieds.com/listing</a></span></p>';
-    echo '<p id="inlineP"><span id="detailName">Category: </span>
-            <span id="detailValue">'.$data["Category"].'</span></p>';
-    echo '<p id="inlineP"><span id="detailName">Description: </span>
-            <span id="detailValue">'.$data["Description"].'</span></p>';
+                                            
     echo '</div>';
-}
-?>
-<footer>	
-    <p class="copyright">
+    if (!empty($data))//check for empty array
+    {        
+        echo '<div class="d-md-flex flex-row align-items-center border-bottom-2 bg-light-blue">';
+        echo '<div class="col-12 col-md-6 p-2">
+              <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 100%; height: auto;" src='.$data["Photo Full"].'>
+              </img></div>';
+        echo '<div class="col-12 col-md-6">';
+        echo '<div class="flex-row font-weight-bold p-2">
+                '.$data["Name"].'
+              </div>';
+        echo '<div class="flex-row p-2">
+                <div class="d-inline-flex font-weight-bold">Price: </div>
+                <div class="d-inline-flex">'.$data["Price"].'</div></div>';
+        echo '<div class="flex-row p-2">
+                <div class="d-inline-flex font-weight-bold">Location: </div>
+                <div class="d-inline-flex">'.$data["Location"].'</div></div>';
+        echo '<div class="flex-row p-2">
+                <div class="d-inline-flex font-weight-bold">Listing URL: </div>
+                <div class="d-inline-flex"><a class="nav-link font-weight-bold" href="'.$data["Listing URL"].'">Listing Site</a></div></div>';
+        echo '<div class="flex-row p-2">
+                <div class="d-inline-flex font-weight-bold">Category: </div>
+                <div class="d-inline-flex">'.$data["Category"].'</div></div>';
+        echo '<div class="flex-row p-2">
+                <div class="d-inline-flex font-weight-bold">Description: </div>
+                <div class="d-inline-flex">'.$data["Description"].'</div></div>';
+        echo '</div>';
+        echo '</div>';        
+    }
+?> 
+
+<footer class="s-footer page-footer text-center bg-dark text-white py-3">	
+    <p>
         &copy; <?php echo date("Y"); ?> INF653 - CMS - James Kobell
     </p>
 </footer>
