@@ -1,0 +1,1 @@
+a:9:{s:10:"Listing ID";s:7:"9898987";s:4:"Name";s:8:"Test Two";s:10:"Photo Full";s:0:"";s:11:"Photo Thumb";s:0:"";s:8:"Category";s:10:"Misc, test";s:5:"Price";s:7:"$999.11";s:8:"Location";s:15:"Bigtown, Kansas";s:11:"Listing URL";s:0:"";s:11:"Description";s:18:"Test 2 Description";}

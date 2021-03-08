@@ -137,15 +137,18 @@ print_r($data);
 foreach ($data as $key => $value) {
     echo "key {$key} is {$value}\n";    
 }
+*/
 
+/*
+//load listings
 $dataFilePath = './listings/'.$listing.'.txt';
 file_put_contents($dataFilePath, serialize($data));
 
 echo "Data is in {$dataFilePath}";
 */
 
-//test reading from files
-$listingsFilenames = glob('./listings/*.txt');
+//test reading from listings
+/* $listingsFilenames = glob('./listings/*.txt');
 foreach ($listingsFilenames as $value)
     {
         $dataFilePath = $value;
@@ -157,9 +160,103 @@ foreach ($listingsFilenames as $value)
             echo '</br>';
             echo '</br>';
         }
-    }
+    } */
 
 
+
+//Inventory 
+/* $listing = '1812901';
+$name = '2012 International 4,000 Gal. Water Truck ** READY TO GO **';
+$photoFull = '/inf653/cms/images/full/1812901_full.jpeg';
+$photoThumb = '/inf653/cms/images/thumb/1812901_thumb.jpeg';
+$category = 'Farm Equipment & Supplies, Commercial Equipment, Machinery';
+$price = '$51,500.00';
+$location = 'Hays, Kansas';
+$listingUrl = 'https://www.nextechclassifieds.com/listings/1812901/';
+$description = "2012 International 4,000 Gallon Water Truck - Model # IN7400 - 28,760 Miles - 4,000 Gallon Truck - Don't Miss Out!! - Always serviced and maintained and ready to go to work!!! - Set up and ready for your next job!";
+ */
+
+/* $listing = '1857520';
+$name = '1992 Merritt 50ft cattle trailer';
+$photoFull = '/inf653/cms/images/full/1857520_full.jpeg';
+$photoThumb = '/inf653/cms/images/thumb/1857520_thumb.jpeg';
+$category = 'Livestock, Equipment';
+$price = '$14,000.00';
+$location = 'Hays, Kansas';
+$listingUrl = 'https://www.nextechclassifieds.com/listings/1857520/';
+$description = "Air ride - DOT inspection good - Tires and brakes good - Excellent condition"; */
+
+/* $listing = '1838182';
+$name = 'Bundy Saxophone';
+$photoFull = '/inf653/cms/images/full/1838182_full.jpeg';
+$photoThumb = '/inf653/cms/images/thumb/1838182_thumb.jpeg';
+$category = 'Musical Instruments';
+$price = '$300.00';
+$location = 'Ellis, Kansas';
+$listingUrl = 'https://www.nextechclassifieds.com/listings/1838182/';
+$description = "For sale: Bundy Saxophone "; */
+
+/* $listing = '1782009';
+$name = 'Used cell phone radio towers';
+$photoFull = '/inf653/cms/images/full/1782009_full.jpeg';
+$photoThumb = '/inf653/cms/images/thumb/1782009_thumb.jpeg';
+$category = 'Tools & Building Materials, Commercial Equipment, Supplies ';
+$price = '$100.00';
+$location = 'Ulysses, Kansas';
+$listingUrl = 'https://www.nextechclassifieds.com/listings/1782009/';
+$description = "I ended up with a bunch of cell phone towers. Most are 3' triangles some are 2' triangles.
+ All are 20' sections. Some are bent up from falling, most are in good shape.
+They make very good pipe or iron racks they could be used for buisness band radios getting you satilite dish above tree line, barn trusses bridges for ATVs or many other uses.
+most of them are the 3' ones solid bar construction galvanized steel = heavy.
+I can load and possibly deliver.
+I am thinking $100.00 for the bent ones and on up to $400.00 for the really nice ones per section. Making deals on multiple pieces.
+I have all the guy wire and turnbuckles, bolts and hardware too."; */
+
+$listing = '1856915';
+$name = '14ft boat and trailer';
+$photoFull = '/inf653/cms/images/full/1856915_full.jpeg';
+$photoThumb = '/inf653/cms/images/thumb/1856915_thumb.jpeg';
+$category = 'Campers & Boats ';
+$price = '$300.00';
+$location = 'Syracuse, Kansas';
+$listingUrl = 'https://www.nextechclassifieds.com/listings/1856915/';
+$description = "14' V-bottom aluminum boat with trailer";
+ 
+$data = array(
+'Listing ID' => $listing,
+'Name' => $name,
+'Photo Full' => $photoFull,
+'Photo Thumb' => $photoThumb,
+'Category' => $category,
+'Price' => $price,
+'Location' => $location,
+'Listing URL' => $listingUrl,
+'Description' => $description
+);
+
+print_r($data);
+
+//load inventory
+$dataFilePath = './inventory/'.$listing.'.txt';
+file_put_contents($dataFilePath, serialize($data));
+
+echo "Data is in {$dataFilePath}";
+
+
+//test reading from inventory
+/* $listingsFilenames = glob('./inventory/*.txt');
+foreach ($listingsFilenames as $value)
+    {
+        $dataFilePath = $value;
+        $fileContent = file_get_contents($dataFilePath);
+        if (!empty($fileContent))
+        {
+            $data = unserialize($fileContent);
+            print_r($data);
+            echo '</br>';
+            echo '</br>';
+        }
+    } */
 
 
 

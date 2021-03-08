@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>NexTechClassifieds.com | Top ten picks</title>
+  <title>NexTechClassifieds.com | Top Picks</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
 
@@ -14,13 +14,14 @@
   
   
 </head>
+
 <body id="indexBody">
- 
+
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <span class="navbar-brand">NexTechClassifieds.com</span>
-    <span class="text-white">TOP TEN PICKS</span>  
+    <span class="text-white">TOP PICKS</span>  
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon bg-info"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
         <ul class="navbar-nav">
@@ -37,13 +38,13 @@ $listingsFilenames = glob('./listings/*.txt');
 
 // table made with Bootstrap
 echo '<div class="d-md-flex flex-row flex-nowrap d-none d-md-block flex-row border bg-secondary">';
-echo '<div class="p-2 text-center font-weight-bold border-right border-left" style="width: 5%;">Details</div>';
-echo '<div class="p-2 text-center font-weight-bold border-right" style="width: 20%;">Photo</div>';
-echo '<div class="p-2 text-center font-weight-bold border-right" style="width: 25%;">Name</div>';
-echo '<div class="p-2 text-center font-weight-bold border-right" style="width: 15%;">Price</div>';
-echo '<div class="p-2 text-center font-weight-bold border-right" style="width: 15%;">Location</div>';
-echo '<div class="p-2 text-center font-weight-bold border-right" style="width: 15%;">Category</div>';
-echo '<div class="p-2 text-center font-weight-bold border-right" style="width: 5%;">Edit</div>';
+echo '<div class="col-12 col-md-1 p-2 text-center font-weight-bold border-right border-left">Details</div>';
+echo '<div class="col-12 col-md-1 p-2 text-center font-weight-bold border-right">Photo</div>';
+echo '<div class="col-12 col-md-3 p-2 text-center font-weight-bold border-right">Name</div>';
+echo '<div class="col-12 col-md-1 p-2 text-center font-weight-bold border-right">Price</div>';
+echo '<div class="col-12 col-md-2 p-2 text-center font-weight-bold border-right">Location</div>';
+echo '<div class="col-12 col-md-3 p-2 text-center font-weight-bold border-right">Category</div>';
+echo '<div class="col-12 col-md-1 p-2 text-center font-weight-bold border-right">Edit</div>';
 echo '</div>';
 
 //loop through collection of files. Get each files content and create a table row
@@ -54,28 +55,28 @@ foreach ($listingsFilenames as $value)
         if (!empty($fileContent)) //check empty file
         {
             $data = unserialize($fileContent);
-            echo '<div class="d-md-flex flex-row align-items-center border">';
-            echo '<div class="p-2 text-center" style="width: 5%;">
-                    <form class="form-inline" method="post" action="/inf653/cms/detail.php">
-                    <input type="hidden" name="listingId" value="'.htmlspecialchars($data["Listing ID"]).'">
-                    <input type="submit" value="Details">
+            echo '<div class="d-md-flex flex-row align-items-center border-bottom-2 bg-light-blue">';
+            echo '<div class="col-12 col-md-1 text-center p-3">
+                    <form class="form-inline mx-auto d-block" method="post" action="/inf653/cms/detail.php">
+                        <input type="hidden" name="listingId" value="'.htmlspecialchars($data["Listing ID"]).'">
+                        <input type="submit" value="Details">
                     </form>  
                   </div>';
             
-            echo '<div class="p-2 text-center" style="width: 20%;">
-                    <a target="_self" href="/inf653/cms/images/full/'.htmlspecialchars($data["Listing ID"]).'_full.jpeg">
-                    <img class="img-thumbnail" style="height: 80px;" src='.htmlspecialchars($data["Photo Thumb"]).'></img></a>
+            echo '<div class="col-12 col-md-1">
+                    <a target="_self" href="/inf653/cms/images/full/'.htmlspecialchars($data["Listing ID"]).'_full.jpeg">                    
+                    <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 80%; height: auto;" src='.htmlspecialchars($data["Photo Thumb"]).'></img></a>
                   </div>';              
 
-            echo '<div class="p-2 text-center" style="width: 25%;">'.htmlspecialchars($data["Name"]).'</div>';
-            echo '<div class="p-2 text-center" style="width: 15%;">'.htmlspecialchars($data["Price"]).'</div>';
-            echo '<div class="p-2 text-center" style="width: 15%;">'.htmlspecialchars($data["Location"]).'</div>';
-            echo '<div class="p-2 text-center" style="width: 15%;">'.htmlspecialchars($data["Category"]).'</div>';
-            echo '<div class="p-2 text-center" style="width: 5%;">
-                    <form class="form-inline" method="post" action="/inf653/cms/editItem.php" id="editForm">
-                    <input type="hidden" name="listingId" value="'.htmlspecialchars($data["Listing ID"]).'">
-                    </form>
-                    <button type="submit" form="editForm" value="Submit">Edit</button>
+            echo '<div class="col-12 col-md-3 text-center">'.htmlspecialchars($data["Name"]).'</div>';
+            echo '<div class="col-12 col-md-1 text-center">'.htmlspecialchars($data["Price"]).'</div>';
+            echo '<div class="col-12 col-md-2 text-center">'.htmlspecialchars($data["Location"]).'</div>';
+            echo '<div class="col-12 col-md-3 text-center">'.htmlspecialchars($data["Category"]).'</div>';
+            echo '<div class="col-12 col-md-1 text-center p-3">
+                    <form class="col form-inline mx-auto d-block" method="post" action="/inf653/cms/editItem.php"">
+                        <input type="hidden" name="listingId" value="'.htmlspecialchars($data["Listing ID"]).'">
+                        <input type="submit" value="Edit">
+                    </form>                    
                   </div>';
             echo '</div>';
             
@@ -86,9 +87,8 @@ echo '</table>';
 
 ?> <!--end php-->
 
-
-<footer>	
-    <p class="copyright">
+<footer class="page-footer text-center bg-dark text-white py-3">	
+    <p>
         &copy; <?php echo date("Y"); ?> INF653 - CMS - James Kobell
     </p>
 </footer>
