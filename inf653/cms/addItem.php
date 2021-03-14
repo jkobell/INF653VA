@@ -11,8 +11,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
-  
+    
 </head>
 <body>
 
@@ -46,60 +45,60 @@ echo '</div>';
 
     echo '<div class="d-md-flex flex-row align-items-center bg-light-blue">';
     echo '<div class="col-12 col-md-11">';    
-    echo '<form method="post" action="/inf653/cms/addItemSave.php">';
+    echo '<form class="needs-validation" method="post" action="/inf653/cms/addItemSave.php" nonvalidate>';
     echo '<div class="d-md-flex form-row">';     
     echo '<div class="col-12 col-md-1 p-2">                
             <div class="d-md-none d-inline-flex font-weight-bold">Listing Id: </div>
             <div class="d-flex">
-            <input type="text" class="form-control" style="text-align: center;" name="listingId" placeholder="Listing Id">
+            <input type="text" class="form-control" style="text-align: center;" name="listingId" placeholder="Listing Id" required maxlength="50">
             </div>            
           </div>'; 
     echo '<div class="col-12 col-md-1 p-2">                
             <div class="d-md-none d-inline-flex font-weight-bold">Name: </div>
             <div class="d-flex">
-            <input type="text" class="form-control" style="text-align: center;" name="name" placeholder="Name">
+            <input type="text" class="form-control" style="text-align: center;" name="name" placeholder="Name" required maxlength="100">
             </div>            
           </div>';
     echo '<div class="col-12 col-md-1 p-2">                
             <div class="d-md-none d-inline-flex font-weight-bold">Full Photo: </div>
             <div class="d-flex">
-            <input type="text" class="form-control" style="text-align: center;" name="photoFull" placeholder="[filename].jpeg">
+            <input type="text" class="form-control" style="text-align: center;" name="photoFull" placeholder="[filename].jpeg" required maxlength="50">
             </div>            
           </div>';
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Thumb Photo: </div>
             <div class="d-flex">
-               <input type="text" class="form-control" style="text-align: center;" name="photoThumb" placeholder="[filename].jpeg">
+               <input type="text" class="form-control" style="text-align: center;" name="photoThumb" placeholder="[filename].jpeg" required maxlength="50">
             </div>            
           </div>';            
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Price: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: right;" name="price" placeholder="Price">
+                <input type="text" class="form-control" style="text-align: right;" name="price" placeholder="Price" required maxlength="10">
             </div>            
           </div>';
     echo '<div class="col-12 col-md-3 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Description: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="description" placeholder="Description">
+                <input type="text" class="form-control" style="text-align: center;" name="description" placeholder="Description" required maxlength="250">
             </div>            
           </div>';
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Location: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="location" placeholder="Location">
+                <input type="text" class="form-control" style="text-align: center;" name="location" placeholder="Location" required maxlength="50">
             </div>           
           </div>';
     echo '<div class="col-12 col-md-2 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Listing URL: </div>
             <div class="d-flex">
-                <input type="text" class="form-control" style="text-align: center;" name="listingUrl" placeholder="Listing URL">
+                <input type="text" class="form-control" style="text-align: center;" name="listingUrl" placeholder="Listing URL" required maxlength="50">
             </div>            
           </div>';     
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Category: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="category" placeholder="Category">
+                <input type="text" class="form-control" style="text-align: center;" name="category" placeholder="Category" required maxlength="50">
             </div>            
           </div>';
 
@@ -128,5 +127,26 @@ echo '</div>';
         &copy; <?php echo date("Y"); ?> INF653 - CMS - James Kobell
     </p>
 </footer>
+<script>
+//JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    //prevent submission    
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        
+        if (form.checkValidity() === false) {          
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });    
+  }, false);
+})();
+</script>
 </body>
 </html>
