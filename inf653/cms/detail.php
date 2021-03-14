@@ -25,7 +25,7 @@ $data = array();
     if (isset($_POST["listingId"]))
     {
         $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING); //clean
-        $dataFilePath = './listings/'.$listingId.'.txt';
+        $dataFilePath = ".\\listings\\".$listingId.".txt";
         $fileContent = file_get_contents($dataFilePath);
         if (!empty($fileContent))
         {
