@@ -36,7 +36,9 @@ $data = array();
         $location = filter_var($_POST["location"], FILTER_SANITIZE_STRING); //clean
         $description = filter_var($_POST["description"], FILTER_SANITIZE_STRING); //clean
 
-        $dataFilePath = ".\\listings\\".$listingId.".txt";
+
+        $dataFilePath = './listings/'.$listingId.'.txt';
+
         $fileContent = file_get_contents($dataFilePath);
         if (!empty($fileContent))
         {

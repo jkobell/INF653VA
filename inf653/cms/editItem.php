@@ -25,7 +25,9 @@ $data = array();
     if (isset($_POST["listingId"]))
     {
         $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING); //clean
-        $dataFilePath = ".\\listings\\".$listingId.".txt";
+
+        $dataFilePath = './listings/'.$listingId.'.txt';
+
         $fileContent = file_get_contents($dataFilePath);
         if (!empty($fileContent))
         {
@@ -88,7 +90,10 @@ $data = array();
     echo '<div class="d-md-flex flex-row align-items-center bg-light-blue">';
     echo '<div class="col-12 col-md-11">';
     
-    echo '<form method="post" action="/inf653/cms/formSave.php">';
+
+    echo '<form class="needs-validation" method="post" action="/inf653/cms/formSave.php" nonvalidate>';
+
+    
     echo '<div class="d-md-flex form-row">';
      
     echo '<div class="col-12 col-md-1 p-2 text-center">                
@@ -98,31 +103,41 @@ $data = array();
     echo '<div class="col-12 col-md-2 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Name: </div>
             <div class="d-flex">
-               <input type="text" class="form-control" style="text-align: center;" name="name" value="'.htmlspecialchars($data["Name"]).'">
+
+               <input type="text" class="form-control" style="text-align: center;" name="name" value="'.htmlspecialchars($data["Name"]).'" required maxlength="100">
+
             </div>            
           </div>';            
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Price: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: right;" name="price" value="'.htmlspecialchars($data["Price"]).'">
+
+                <input type="text" class="form-control" style="text-align: right;" name="price" value="'.htmlspecialchars($data["Price"]).'"required maxlength="10">
+
             </div>            
           </div>';
     echo '<div class="col-12 col-md-5 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Description: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="description" value="'.htmlspecialchars($data["Description"]).'">
+
+                <input type="text" class="form-control" style="text-align: center;" name="description" value="'.htmlspecialchars($data["Description"]).'"required maxlength="250">
+
             </div>            
           </div>';
     echo '<div class="col-12 col-md-2 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Location: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="location" value="'.htmlspecialchars($data["Location"]).'">
+
+                <input type="text" class="form-control" style="text-align: center;" name="location" value="'.htmlspecialchars($data["Location"]).'"required maxlength="50">
+
             </div>           
           </div>';   
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Category: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="category" value="'.htmlspecialchars($data["Category"]).'">
+
+                <input type="text" class="form-control" style="text-align: center;" name="category" value="'.htmlspecialchars($data["Category"]).'"required maxlength="50">
+
             </div>            
           </div>';
 
