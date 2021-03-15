@@ -91,7 +91,7 @@ $location = 'Ellinwood, Kansas';
 $listingUrl = 'https://www.nextechclassifieds.com/listings/1809608/';
 $description = "Brand new 2021 top hat 78 inches wide by 16 ft long utility trailer, 4 ft ramp gate, 2 3500# axles, 15 inch tires, spare tire and wheel, $2400  620-546-3445";
 */
-/*
+
 $listing = '1814197';
 $name = 'Trailmaster Mini Bike';
 $photoFull = '/inf653/cms/images/full/1814197_full.jpeg';
@@ -107,7 +107,7 @@ Salina Powersports
 632 S Broadway
 Salina KS 67401
 785-823-seven two nine seven";
-*/
+
 
 /*
 $listing = '1845303';
@@ -119,7 +119,7 @@ $price = '$2,500.00';
 $location = 'Dodge City, Kansas';
 $listingUrl = 'https://www.nextechclassifieds.com/listings/1845303/';
 $description = "I have a terry bass fishing boat with a mercury 150 hp motor new in 2006. Boat is a 1974 and has no leaks paint is weathered on top side last owner had it outside with no cover  on it and needs some tlc on the inside new carpet. Motor is great condition and started right up and goes into forward and reverse. Has 4 brand new batterys last year and has 3 new tires. Has trolling motor 12v or 24v its a 41 pound motor guide. New led lights on trailer and greased bearings. Bill of sale  call or text 3163611313";
-
+*/
 $data = array(
 'Listing ID' => $listing,
 'Name' => $name,
@@ -137,15 +137,15 @@ print_r($data);
 foreach ($data as $key => $value) {
     echo "key {$key} is {$value}\n";    
 }
-*/
 
-/*
+
+
 //load listings
 $dataFilePath = './listings/'.$listing.'.txt';
 file_put_contents($dataFilePath, serialize($data));
 
 echo "Data is in {$dataFilePath}";
-*/
+
 
 //test reading from listings
 /* $listingsFilenames = glob('./listings/*.txt');
@@ -212,7 +212,7 @@ I can load and possibly deliver.
 I am thinking $100.00 for the bent ones and on up to $400.00 for the really nice ones per section. Making deals on multiple pieces.
 I have all the guy wire and turnbuckles, bolts and hardware too."; */
 
-$listing = '1856915';
+/* $listing = '1856915';
 $name = '14ft boat and trailer';
 $photoFull = '/inf653/cms/images/full/1856915_full.jpeg';
 $photoThumb = '/inf653/cms/images/thumb/1856915_thumb.jpeg';
@@ -220,9 +220,9 @@ $category = 'Campers & Boats ';
 $price = '$300.00';
 $location = 'Syracuse, Kansas';
 $listingUrl = 'https://www.nextechclassifieds.com/listings/1856915/';
-$description = "14' V-bottom aluminum boat with trailer";
+$description = "14' V-bottom aluminum boat with trailer"; */
  
-$data = array(
+/* $data = array(
 'Listing ID' => $listing,
 'Name' => $name,
 'Photo Full' => $photoFull,
@@ -240,7 +240,7 @@ print_r($data);
 $dataFilePath = './inventory/'.$listing.'.txt';
 file_put_contents($dataFilePath, serialize($data));
 
-echo "Data is in {$dataFilePath}";
+echo "Data is in {$dataFilePath}"; */
 
 
 //test reading from inventory

@@ -17,66 +17,44 @@
 <body>
 
 <?php
+include 'item.php';
+include 'data.php';
 
-$listingId = '';
-$name = '';
-$category = '';
-$price = '';
-$location = '';
-$description = '';
-$data = array();
+$item = new Item();
+$data = new Data();
+$itemData = array();
 
     //use listingId to get filename for reading from flat file
     if (isset($_POST["listingId"]))
     {
-        $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING); //clean
-        $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING); //clean
-        $category = filter_var($_POST["category"], FILTER_SANITIZE_STRING); //clean
-        $price = filter_var($_POST["price"], FILTER_SANITIZE_STRING); //clean
-        $location = filter_var($_POST["location"], FILTER_SANITIZE_STRING); //clean
-        $description = filter_var($_POST["description"], FILTER_SANITIZE_STRING); //clean
+        $item->setListingId(filter_var($_POST["listingId"], FILTER_SANITIZE_STRING)); //clean
+        $item->setName(filter_var($_POST["name"], FILTER_SANITIZE_STRING)); //clean
+        $item->setCategory(filter_var($_POST["category"], FILTER_SANITIZE_STRING)); //clean
+        $item->setPrice(filter_var($_POST["price"], FILTER_SANITIZE_STRING)); //clean
+        $item->setLocation(filter_var($_POST["location"], FILTER_SANITIZE_STRING)); //clean
+        $item->setDescription(filter_var($_POST["description"], FILTER_SANITIZE_STRING)); //clean
 
-
-        $dataFilePath = './listings/'.$listingId.'.txt';
-
-        $fileContent = file_get_contents($dataFilePath);
-        if (!empty($fileContent))
-        {
-            $data = unserialize($fileContent);        
-            echo '<nav class="navbar bg-dark justify-content-center">';
-            echo '<span class= "navbar-brand text-white font-weight-bold text-center">Saving...  '.$listingId.'</span>';
-            echo '</nav>';           
-        }       
-        else
-        {
-            include_once 'error.php';
-        }
-    }
-    
-    //print_r($data);
-
+        $itemData = $data->getListingIdData($item->getListingId());        
+          
+        echo '<nav class="navbar bg-dark justify-content-center">';
+        echo '<span class= "navbar-brand text-white font-weight-bold text-center">Saving...  '.$item->getListingId().'</span>';
+        echo '</nav>';         
+    }    
+    //print_r($itemData);
     $saveData = array(
-        'Listing ID' => $data["Listing ID"],
-        'Name' => $name,
-        'Photo Full' => $data["Photo Full"],
-        'Photo Thumb' => $data["Photo Thumb"],
-        'Category' => $category,
-        'Price' => $price,
-        'Location' => $location,
-        'Listing URL' => $data["Listing URL"],
-        'Description' => $description
-        );
-        
-        //print_r($saveData);
-        
-        /* foreach ($saveData as $key => $value) {
-            echo "key {$key} is {$value}\n";
-            echo '<br />';    
-        } */
-        
-        $dataFilePath = './listings/'.$listingId.'.txt';
-        file_put_contents($dataFilePath, serialize($saveData));
-        
+        'Listing ID' => $itemData["Listing ID"],
+        'Name' => $item->getName(),
+        'Photo Full' => $itemData["Photo Full"],
+        'Photo Thumb' => $itemData["Photo Thumb"],
+        'Category' => $item->getCategory(),
+        'Price' => $item->getPrice(),
+        'Location' => $item->getLocation(),
+        'Listing URL' => $itemData["Listing URL"],
+        'Description' => $item->getDescription()
+        );        
+        //print_r($saveData);        
+        $data->putItemData($saveData);
+                
         header("Location: /inf653/cms/index.php");
         exit();    
 
