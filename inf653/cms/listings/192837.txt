@@ -1,1 +1,0 @@
-a:9:{s:10:"Listing ID";s:6:"192837";s:4:"Name";s:8:"Test Add";s:10:"Photo Full";s:11:"noPhoto.jpg";s:11:"Photo Thumb";s:11:"noPhoto.jpg";s:8:"Category";s:4:"Misc";s:5:"Price";s:8:"$1999.99";s:8:"Location";s:12:"City, Kansas";s:11:"Listing URL";s:34:"https://www.nextechclassifieds.com";s:11:"Description";s:20:"Test Add description";}

@@ -1,7 +1,1 @@
-a:9:{s:10:"Listing ID";s:7:"1814197";s:4:"Name";s:21:"Trailmaster Mini Bike";s:10:"Photo Full";s:41:"/inf653/cms/images/full/1814197_full.jpeg";s:11:"Photo Thumb";s:43:"/inf653/cms/images/thumb/1814197_thumb.jpeg";s:8:"Category";s:24:"ATV's, Motorcycles, Etc.";s:5:"Price";s:9:"$1,499.00";s:8:"Location";s:14:"Salina, Kansas";s:11:"Listing URL";s:52:"https://www.nextechclassifieds.com/listings/1814197/";s:11:"Description";s:312:"Trailmaster Mini Bike - Ideal for teenager and adults.
-Front headight, rear storage rack, 1 gallon fuel tank.
-https://www.powersportsofkansas.com/New-Inventory-2020-TrailMaster-Motorcycle-Scooter-MB200-2-Salina-9525531?ref=list
-Salina Powersports
-632 S Broadway
-Salina KS 67401
-785-823-seven two nine seven";}
+a:9:{s:10:"Listing ID";s:7:"1814197";s:4:"Name";s:21:"Trailmaster Mini Bike";s:10:"Photo Full";s:41:"/inf653/cms/images/full/1814197_full.jpeg";s:11:"Photo Thumb";s:43:"/inf653/cms/images/thumb/1814197_thumb.jpeg";s:8:"Category";s:28:"ATV&#39;s, Motorcycles, Etc.";s:5:"Price";s:9:"$1,519.00";s:8:"Location";s:14:"Salina, Kansas";s:11:"Listing URL";s:52:"https://www.nextechclassifieds.com/listings/1814197/";s:11:"Description";s:128:"Trailmaster Mini Bike - Ideal for teenager and adults. Front headight, rear storage rack, 1 gallon fuel tank. Salina Powersports";}

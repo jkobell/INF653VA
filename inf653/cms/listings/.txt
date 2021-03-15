@@ -1,1 +1,0 @@
-a:9:{s:10:"Listing ID";s:0:"";s:4:"Name";s:0:"";s:10:"Photo Full";s:0:"";s:11:"Photo Thumb";s:0:"";s:8:"Category";s:0:"";s:5:"Price";s:0:"";s:8:"Location";s:0:"";s:11:"Listing URL";s:0:"";s:11:"Description";s:0:"";}
