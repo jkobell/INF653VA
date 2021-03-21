@@ -17,55 +17,61 @@
 <body>
 
 <?php
+include 'data.php';
+include_once 'errorHelper.php';
+include_once 'logging.php';
+
+$data = new Data();
+$itemData = array();
 
 $listingId = '';
-$data = array();
 
     //use listingId to get filename for reading from flat file
     if (isset($_POST["listingId"]))
     {
         $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING); //clean
-        $dataFilePath = './listings/'.$listingId.'.txt';
-        $fileContent = file_get_contents($dataFilePath);
-        if (!empty($fileContent))
-        {
-            $data = unserialize($fileContent);        
+        $itemData = $data->getListingIdData($listingId);      
             echo '<nav class="navbar bg-dark justify-content-center">';
             echo '<span class= "navbar-brand text-white font-weight-bold text-center">'.$listingId.' - Details</span>';//set listingId number in header element 
             echo '</nav>';           
-        }       
-        else
-        {
-            include_once 'error.php';
-        }
+        
+    }
+    else
+    {
+        $log = new Logging();
+        $logMessage = date("H:i:s")." :detail.php error: listingId not in postArray \n";
+        $log->setDataLog($logMessage);
+        $error = new ErrorHelper('OOPS! The selected listing is unavailable at this time. Please try again later.');
+        $error->showErrorMessage();
+        exit();//if error view fails
     }
                                             
     echo '</div>';
-    if (!empty($data))//check for empty array
+    if (!empty($itemData))//check for empty array
     {        
         echo '<div class="d-md-flex flex-row align-items-center border-bottom-2 bg-light-blue">';
         echo '<div class="col-12 col-md-6 p-2">
-              <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 100%; height: auto;" src='.$data["Photo Full"].'>
+              <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 100%; height: auto;" src='.$itemData["Photo Full"].'>
               </img></div>';
         echo '<div class="col-12 col-md-6">';
         echo '<div class="flex-row font-weight-bold p-2">
-                '.$data["Name"].'
+                '.$itemData["Name"].'
               </div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Price: </div>
-                <div class="d-inline-flex">'.$data["Price"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["Price"].'</div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Location: </div>
-                <div class="d-inline-flex">'.$data["Location"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["Location"].'</div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Listing URL: </div>
-                <div class="d-inline-flex"><a class="nav-link font-weight-bold" href="'.$data["Listing URL"].'">Listing Site</a></div></div>';
+                <div class="d-inline-flex"><a class="nav-link font-weight-bold" href="'.$itemData["Listing URL"].'">Listing Site</a></div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Category: </div>
-                <div class="d-inline-flex">'.$data["Category"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["Category"].'</div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Description: </div>
-                <div class="d-inline-flex">'.$data["Description"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["Description"].'</div></div>';
         echo '</div>';
         echo '</div>';        
     }

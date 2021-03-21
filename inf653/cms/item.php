@@ -20,9 +20,7 @@ class Item
     private const MAX_LENGTH_DESCRIPTION = 250;
 
     private const VALUE_NOT_SET = 'value not set';
-    private const LENGTH_INVALID = 'The length of text is invalid.';
-
-
+    private const LENGTH_INVALID = 'length of text is invalid.';
 
     public function __construct()
     {
