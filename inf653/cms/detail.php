@@ -17,7 +17,7 @@
 <body>
 
 <?php
-include 'data.php';
+include_once 'data.php';
 include_once 'errorHelper.php';
 include_once 'logging.php';
 

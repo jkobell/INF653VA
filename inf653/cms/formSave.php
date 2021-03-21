@@ -16,8 +16,8 @@
 <body>
 
 <?php
-include 'item.php';
-include 'data.php';
+include_once 'item.php';
+include_once 'data.php';
 
 $item = new Item();
 $data = new Data();

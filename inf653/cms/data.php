@@ -8,12 +8,7 @@ class Data
     private $dataFileContent;
     private $itemData = array();
     private $fileData;
-
-    public function __construct()
-    {
-
-    }
-    
+        
     private function setDataFilePath($value)
     {
         $this->dataFilePath = './listings/'.$value.'.txt';
@@ -66,7 +61,7 @@ class Data
     public function putItemData($dataArray)
     {
         isset($dataArray['Listing ID']) ? $this->setDataFilePath($dataArray['Listing ID']) : $this->logMessage(date("H:i:s")." :data.putItemData error: setDataFilePath \n");
-
+        
         $result = file_put_contents($this->dataFilePath, serialize($dataArray));        
         if ($result != false)
         {

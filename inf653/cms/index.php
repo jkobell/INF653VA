@@ -32,7 +32,7 @@
 </nav>    
     
 <?php //begin php
-include 'data.php';
+include_once 'data.php';
 
 $data = new Data();
 $itemData = array();
