@@ -21,7 +21,6 @@ class Item
 
     const VALUE_NOT_SET = 'value not set';
     const LENGTH_INVALID = 'length of text is invalid.';
-        
     public function getListingId()
     {
         if (isset($this->listingId))

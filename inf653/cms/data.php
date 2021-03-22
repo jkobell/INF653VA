@@ -7,8 +7,8 @@ class Data
     private $dataFilePath;
     private $dataFileContent;
     private $itemData = array();
-    private $fileData;
-        
+    private $fileData;        
+
     private function setDataFilePath($value)
     {
         $this->dataFilePath = './listings/'.$value.'.txt';
