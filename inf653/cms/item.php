@@ -13,22 +13,14 @@ class Item
     private $listingUrl;
     private $category;
 
-    private const MIN_LENGTH = 1;
-    private const MAX_LENGTH_PRICE = 10;
-    private const MAX_LENGTH = 50;
-    private const MAX_LENGTH_NAME = 100;
-    private const MAX_LENGTH_DESCRIPTION = 250;
+    const MIN_LENGTH = 1;
+    const MAX_LENGTH_PRICE = 10;
+    const MAX_LENGTH = 50;
+    const MAX_LENGTH_NAME = 100;
+    const MAX_LENGTH_DESCRIPTION = 250;
 
-    private const VALUE_NOT_SET = 'value not set';
-    private const LENGTH_INVALID = 'The length of text is invalid.';
-
-
-
-    public function __construct()
-    {
-
-    }
-    
+    const VALUE_NOT_SET = 'value not set';
+    const LENGTH_INVALID = 'length of text is invalid.';
     public function getListingId()
     {
         if (isset($this->listingId))

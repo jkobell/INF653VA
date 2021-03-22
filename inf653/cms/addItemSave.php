@@ -11,68 +11,50 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
-  
+   
 </head>
 <body>
 
 <?php
-//object properties
-$listingId = '';
-$name = '';
-$category = '';
-$price = '';
-$location = '';
-$description = '';
-$photoFull = '';
-$photoThumb = '';
-$listingUrl = '';
-    
+
+include_once 'item.php';
+include_once 'data.php';
+
+$item = new Item();
+$data = new Data();        
+$itemData = array();
+  
     if (isset($_POST["listingId"]))
     {
-        $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING); //clean
-        $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING); //clean
-        $photoFull = filter_var($_POST["photoFull"], FILTER_SANITIZE_STRING); //clean
-        $photoThumb = filter_var($_POST["photoThumb"], FILTER_SANITIZE_STRING); //clean
-        $listingUrl = filter_var($_POST["listingUrl"], FILTER_SANITIZE_STRING); //clean
-        $category = filter_var($_POST["category"], FILTER_SANITIZE_STRING); //clean
-        $price = filter_var($_POST["price"], FILTER_SANITIZE_STRING); //clean
-        $location = filter_var($_POST["location"], FILTER_SANITIZE_STRING); //clean
-        $description = filter_var($_POST["description"], FILTER_SANITIZE_STRING); //clean              
+        $item->setListingId(filter_var($_POST["listingId"], FILTER_SANITIZE_STRING)); 
+        $item->setName(filter_var($_POST["name"], FILTER_SANITIZE_STRING)); 
+        $item->setPhotoFull(filter_var($_POST["photoFull"], FILTER_SANITIZE_STRING)); 
+        $item->setPhotoThumb(filter_var($_POST["photoThumb"], FILTER_SANITIZE_STRING)); 
+        $item->setListingUrl(filter_var($_POST["listingUrl"], FILTER_SANITIZE_STRING)); 
+        $item->setCategory(filter_var($_POST["category"], FILTER_SANITIZE_STRING)); 
+        $item->setPrice(filter_var($_POST["price"], FILTER_SANITIZE_STRING)); 
+        $item->setLocation(filter_var($_POST["location"], FILTER_SANITIZE_STRING)); 
+        $item->setDescription(filter_var($_POST["description"], FILTER_SANITIZE_STRING));               
              
         echo '<nav class="navbar bg-dark justify-content-center">';
-        echo '<span class= "navbar-brand text-white font-weight-bold text-center">Saving...  '.$listingId.'</span>';
-        echo '</nav>';              
-        
-    }
-    else
-    {
-        include_once 'error.php';
-    }  
-    
+        echo '<span class= "navbar-brand text-white font-weight-bold text-center">Saving...  '.$item->getListingId().'</span>';
+        echo '</nav>';         
+    }          
 
     $saveData = array(
-        'Listing ID' => $listingId,
-        'Name' => $name,
-        'Photo Full' => $photoFull,
-        'Photo Thumb' => $photoThumb,
-        'Category' => $category,
-        'Price' => $price,
-        'Location' => $location,
-        'Listing URL' => $listingUrl,
-        'Description' => $description
-        );
-        
-        //print_r($saveData);
-        
-        /* foreach ($saveData as $key => $value) {
-            echo "key {$key} is {$value}\n";
-            echo '<br />';    
-        } */
-        
-        $dataFilePath = './listings/'.$listingId.'.txt';
-        file_put_contents($dataFilePath, serialize($saveData));
-        
+        'Listing ID' => $item->getListingId(),
+        'Name' => $item->getName(),
+        'Photo Full' => $item->getPhotoFull(),
+        'Photo Thumb' => $item->getPhotoThumb(),
+        'Category' => $item->getCategory(),
+        'Price' => $item->getPrice(),
+        'Location' => $item->getLocation(),
+        'Listing URL' => $item->getListingUrl(),
+        'Description' => $item->getDescription()
+        );         
+                    
+        $data->putItemData($saveData);
+
         header("Location: /inf653/cms/index.php");
         exit();    
 

@@ -18,54 +18,59 @@
 
 <?php
 
-$listingId = '';
-$data = array();
+include_once 'data.php';
+include_once 'errorHelper.php';
+include_once 'logging.php';
 
-    //use listingId to get filename for reading from flat file
+$data = new Data();
+$itemData = array();
+
+$listingId = '';
+    
     if (isset($_POST["listingId"]))
     {
-        $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING); //clean
-        $dataFilePath = './listings/'.$listingId.'.txt';
-        $fileContent = file_get_contents($dataFilePath);
-        if (!empty($fileContent))
-        {
-            $data = unserialize($fileContent);        
-            echo '<nav class="navbar bg-dark justify-content-center">';
-            echo '<span class= "navbar-brand text-white font-weight-bold text-center">Edit - '.$listingId.'</span>';//set listingId number in header element 
-            echo '</nav>';           
-        }       
-        else
-        {
-            include_once 'error.php';
-        }
+        $listingId = filter_var($_POST["listingId"], FILTER_SANITIZE_STRING); //clean       
+        $itemData = $data->getListingIdData($listingId);              
+        echo '<nav class="navbar bg-dark justify-content-center">';
+        echo '<span class= "navbar-brand text-white font-weight-bold text-center">Edit - '.$listingId.'</span>';//set listingId number in header element 
+        echo '</nav>';        
+    }
+    else
+    {
+        $log = new Logging();
+        $logMessage = date("H:i:s")." :editItem.php error: listingId not in postArray \n";
+        $log->setDataLog($logMessage);
+        $error = new ErrorHelper('OOPS! The selected listing is unavailable at this time. Please try again later.');
+        $error->showErrorMessage();
+        exit();//if error view fails
     }
                                             
     echo '</div>';
-    if (!empty($data))//check for empty array
+    if (!empty($itemData))//check for empty array
     {        
         echo '<div class="d-md-flex flex-row align-items-center border-bottom-2 bg-light-blue">';
         echo '<div class="col-12 col-md-6 p-2">
-              <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 50%; height: auto;" src='.$data["Photo Full"].'>
+              <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 50%; height: auto;" src='.$itemData["Photo Full"].'>
               </img></div>';
         echo '<div class="col-12 col-md-6">';
         echo '<div class="flex-row font-weight-bold p-2">
-                '.$data["Name"].'
+                '.$itemData["Name"].'
               </div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Price: </div>
-                <div class="d-inline-flex">'.$data["Price"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["Price"].'</div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Location: </div>
-                <div class="d-inline-flex">'.$data["Location"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["Location"].'</div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Listing URL: </div>
-                <div class="d-inline-flex"><a class="nav-link font-weight-bold" href="'.$data["Listing URL"].'">Listing Site</a></div></div>';
+                <div class="d-inline-flex"><a class="nav-link font-weight-bold" href="'.$itemData["Listing URL"].'">Listing Site</a></div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Category: </div>
-                <div class="d-inline-flex">'.$data["Category"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["Category"].'</div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Description: </div>
-                <div class="d-inline-flex">'.$data["Description"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["Description"].'</div></div>';
         echo '</div>';
         echo '</div>';        
     }
@@ -92,37 +97,37 @@ $data = array();
     echo '<div class="d-md-flex form-row">';
      
     echo '<div class="col-12 col-md-1 p-2 text-center">                
-            <input type="hidden" name="listingId" value="'.htmlspecialchars($data["Listing ID"]).'">
+            <input type="hidden" name="listingId" value="'.htmlspecialchars($itemData["Listing ID"]).'">
             <input type="submit" value="Save">
           </div>';
     echo '<div class="col-12 col-md-2 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Name: </div>
             <div class="d-flex">
-               <input type="text" class="form-control" style="text-align: center;" name="name" value="'.htmlspecialchars($data["Name"]).'" required maxlength="100">
+               <input type="text" class="form-control" style="text-align: center;" name="name" value="'.htmlspecialchars($itemData["Name"]).'" required maxlength="100">
             </div>            
           </div>';            
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Price: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: right;" name="price" value="'.htmlspecialchars($data["Price"]).'"required maxlength="10">
+                <input type="text" class="form-control" style="text-align: right;" name="price" value="'.htmlspecialchars($itemData["Price"]).'"required maxlength="10">
             </div>            
           </div>';
     echo '<div class="col-12 col-md-5 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Description: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="description" value="'.htmlspecialchars($data["Description"]).'"required maxlength="250">
+                <input type="text" class="form-control" style="text-align: center;" name="description" value="'.htmlspecialchars($itemData["Description"]).'"required maxlength="250">
             </div>            
           </div>';
     echo '<div class="col-12 col-md-2 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Location: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="location" value="'.htmlspecialchars($data["Location"]).'"required maxlength="50">
+                <input type="text" class="form-control" style="text-align: center;" name="location" value="'.htmlspecialchars($itemData["Location"]).'"required maxlength="50">
             </div>           
           </div>';   
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Category: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="category" value="'.htmlspecialchars($data["Category"]).'"required maxlength="50">
+                <input type="text" class="form-control" style="text-align: center;" name="category" value="'.htmlspecialchars($itemData["Category"]).'"required maxlength="50">
             </div>            
           </div>';
 
@@ -133,7 +138,7 @@ $data = array();
     
     echo '<div class="col-12 col-md-1 p-2 text-center">';  
     echo '<form method="post" action="/inf653/cms/index.php">
-            <input type="hidden" name="listingId" value="'.htmlspecialchars($data["Listing ID"]).'">
+            <input type="hidden" name="listingId" value="'.htmlspecialchars($itemData["Listing ID"]).'">
             <input type="submit" value="Cancel">
           </form>';
     echo '</div>'; 

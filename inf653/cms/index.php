@@ -32,9 +32,10 @@
 </nav>    
     
 <?php //begin php
+include_once 'data.php';
 
-//get all filenames in directory 'Listings' to $listingsFilenames
-$listingsFilenames = glob('./listings/*.txt');
+$data = new Data();
+$itemData = array();
 
 // table made with Bootstrap
 echo '<div class="d-md-flex flex-row flex-nowrap d-none d-md-block flex-row border bg-secondary">';
@@ -48,39 +49,33 @@ echo '<div class="col-12 col-md-1 p-2 text-center font-weight-bold border-right"
 echo '</div>';
 
 //loop through collection of files. Get each files content and create a table row
-foreach ($listingsFilenames as $value)
-    {
-        $dataFilePath = $value;
-        $fileContent = file_get_contents($dataFilePath);
-        if (!empty($fileContent)) //check empty file
-        {
-            $data = unserialize($fileContent);
-            echo '<div class="d-md-flex flex-row align-items-center border-bottom-2 bg-light-blue">';
-            echo '<div class="col-12 col-md-1 text-center p-3">
-                    <form class="form-inline mx-auto d-block" method="post" action="/inf653/cms/detail.php">
-                        <input type="hidden" name="listingId" value="'.htmlspecialchars($data["Listing ID"]).'">
-                        <input type="submit" value="Details">
-                    </form>  
-                  </div>';
-            
-            echo '<div class="col-12 col-md-1">
-                    <a target="_self" href="/inf653/cms/images/full/'.htmlspecialchars($data["Listing ID"]).'_full.jpeg">                    
-                    <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 80%; height: auto;" src='.htmlspecialchars($data["Photo Thumb"]).'></img></a>
-                  </div>';              
+foreach ($data->getListingsFilenames() as $value)
+    {        
+        $itemData = $data->getListingData($value);        
+        echo '<div class="d-md-flex flex-row align-items-center border-bottom-2 bg-light-blue">';
+        echo '<div class="col-12 col-md-1 text-center p-3">
+                <form class="form-inline mx-auto d-block" method="post" action="/inf653/cms/detail.php">
+                    <input type="hidden" name="listingId" value="'.htmlspecialchars($itemData["Listing ID"]).'">
+                    <input type="submit" value="Details">
+                </form>  
+                </div>';
+        
+        echo '<div class="col-12 col-md-1">
+                <a target="_self" href="/inf653/cms/images/full/'.htmlspecialchars($itemData["Listing ID"]).'_full.jpeg">                    
+                <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 80%; height: auto;" src='.htmlspecialchars($itemData["Photo Thumb"]).'></img></a>
+                </div>';              
 
-            echo '<div class="col-12 col-md-3 text-center">'.htmlspecialchars($data["Name"]).'</div>';
-            echo '<div class="col-12 col-md-1 text-center">'.htmlspecialchars($data["Price"]).'</div>';
-            echo '<div class="col-12 col-md-2 text-center">'.htmlspecialchars($data["Location"]).'</div>';
-            echo '<div class="col-12 col-md-3 text-center">'.htmlspecialchars($data["Category"]).'</div>';
-            echo '<div class="col-12 col-md-1 text-center p-3">
-                    <form class="col form-inline mx-auto d-block" method="post" action="/inf653/cms/editItem.php"">
-                        <input type="hidden" name="listingId" value="'.htmlspecialchars($data["Listing ID"]).'">
-                        <input type="submit" value="Edit">
-                    </form>                    
-                  </div>';
-            echo '</div>';
-            
-        }           
+        echo '<div class="col-12 col-md-3 text-center">'.htmlspecialchars($itemData["Name"]).'</div>';
+        echo '<div class="col-12 col-md-1 text-center">'.htmlspecialchars($itemData["Price"]).'</div>';
+        echo '<div class="col-12 col-md-2 text-center">'.htmlspecialchars($itemData["Location"]).'</div>';
+        echo '<div class="col-12 col-md-3 text-center">'.htmlspecialchars($itemData["Category"]).'</div>';
+        echo '<div class="col-12 col-md-1 text-center p-3">
+                <form class="col form-inline mx-auto d-block" method="post" action="/inf653/cms/editItem.php"">
+                    <input type="hidden" name="listingId" value="'.htmlspecialchars($itemData["Listing ID"]).'">
+                    <input type="submit" value="Edit">
+                </form>                    
+                </div>';
+        echo '</div>';                
     }
 echo '</tbody>';
 echo '</table>';
