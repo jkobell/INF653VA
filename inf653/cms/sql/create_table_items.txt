@@ -1,0 +1,24 @@
+CREATE TABLE `inf653_cms`.`items` 
+( `id` INT(25) NOT NULL AUTO_INCREMENT ,
+ `listing_id` INT(50) NOT NULL ,
+ `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+ `photo_full` MEDIUMBLOB NULL ,
+ `photo_thumb` MEDIUMBLOB NULL ,
+ `category` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+ `price` VARCHAR(25) NOT NULL ,
+ `location` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+ `listing_url` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+ `description` VARCHAR(65536) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+PRIMARY KEY (`id`), UNIQUE `listingId` (`listing_id`)) ENGINE = InnoDB;
+
+Describe items;
+id	int(25)	NO	PRI		auto_increment	
+listing_id	int(50)	NO	UNI			
+name	varchar(255)	NO				
+photo_full	mediumblob	YES				
+photo_thumb	mediumblob	YES				
+category	varchar(255)	NO				
+price	varchar(25)	NO				
+location	varchar(255)	NO				
+listing_url	varchar(255)	NO				
+description	mediumtext	NO		
