@@ -20,40 +20,27 @@
 include_once 'item.php';
 include_once 'data.php';
 
-$item = new Item();
 $data = new Data();        
 $itemData = array();
   
-    if (isset($_POST["listingId"]))
+    if (isset($_POST["listing_id"]))
     {
-        $item->setListingId(filter_var($_POST["listingId"], FILTER_SANITIZE_STRING)); 
-        $item->setName(filter_var($_POST["name"], FILTER_SANITIZE_STRING)); 
-        $item->setPhotoFull(filter_var($_POST["photoFull"], FILTER_SANITIZE_STRING)); 
-        $item->setPhotoThumb(filter_var($_POST["photoThumb"], FILTER_SANITIZE_STRING)); 
-        $item->setListingUrl(filter_var($_POST["listingUrl"], FILTER_SANITIZE_STRING)); 
-        $item->setCategory(filter_var($_POST["category"], FILTER_SANITIZE_STRING)); 
-        $item->setPrice(filter_var($_POST["price"], FILTER_SANITIZE_STRING)); 
-        $item->setLocation(filter_var($_POST["location"], FILTER_SANITIZE_STRING)); 
-        $item->setDescription(filter_var($_POST["description"], FILTER_SANITIZE_STRING));               
+      $itemData['listing_id'] = filter_var($_POST['listing_id'], FILTER_SANITIZE_STRING);      
+      $itemData['name'] = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+      $itemData['photo_full'] = filter_var($_POST['photo_full'], FILTER_SANITIZE_STRING);
+      $itemData['photo_thumb'] = filter_var($_POST['photo_thumb'], FILTER_SANITIZE_STRING);         
+      $itemData['price'] = filter_var($_POST['price'], FILTER_SANITIZE_STRING);         
+      $itemData['description'] = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
+      $itemData['location'] = filter_var($_POST['location'], FILTER_SANITIZE_STRING);
+      $itemData['listing_url'] = filter_var($_POST['listing_url'], FILTER_SANITIZE_STRING);
+      $itemData['category'] = filter_var($_POST['category'], FILTER_SANITIZE_STRING);                    
              
         echo '<nav class="navbar bg-dark justify-content-center">';
-        echo '<span class= "navbar-brand text-white font-weight-bold text-center">Saving...  '.$item->getListingId().'</span>';
+        echo '<span class= "navbar-brand text-white font-weight-bold text-center">Saving...  '.$itemData['listing_id'].'</span>';
         echo '</nav>';         
-    }          
+    }  
 
-    $saveData = array(
-        'Listing ID' => $item->getListingId(),
-        'Name' => $item->getName(),
-        'Photo Full' => $item->getPhotoFull(),
-        'Photo Thumb' => $item->getPhotoThumb(),
-        'Category' => $item->getCategory(),
-        'Price' => $item->getPrice(),
-        'Location' => $item->getLocation(),
-        'Listing URL' => $item->getListingUrl(),
-        'Description' => $item->getDescription()
-        );         
-                    
-        $data->putItemData($saveData);
+        $data->createItemData($itemData);
 
         header("Location: /inf653/cms/index.php");
         exit();    

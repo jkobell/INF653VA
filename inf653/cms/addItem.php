@@ -50,7 +50,7 @@ echo '</div>';
     echo '<div class="col-12 col-md-1 p-2">                
             <div class="d-md-none d-inline-flex font-weight-bold">Listing Id: </div>
             <div class="d-flex">
-            <input type="text" class="form-control" style="text-align: center;" name="listingId" placeholder="Listing Id" required maxlength="50">
+            <input type="text" class="form-control" style="text-align: center;" name="listing_id" placeholder="Listing Id" required maxlength="50">
             </div>            
           </div>'; 
     echo '<div class="col-12 col-md-1 p-2">                
@@ -62,13 +62,13 @@ echo '</div>';
     echo '<div class="col-12 col-md-1 p-2">                
             <div class="d-md-none d-inline-flex font-weight-bold">Full Photo: </div>
             <div class="d-flex">
-            <input type="text" class="form-control" style="text-align: center;" name="photoFull" placeholder="[filename].jpeg" required maxlength="50">
+            <input type="text" class="form-control" style="text-align: center;" name="photo_full" placeholder="[filename].jpeg" required maxlength="50">
             </div>            
           </div>';
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Thumb Photo: </div>
             <div class="d-flex">
-               <input type="text" class="form-control" style="text-align: center;" name="photoThumb" placeholder="[filename].jpeg" required maxlength="50">
+               <input type="text" class="form-control" style="text-align: center;" name="photo_thumb" placeholder="[filename].jpeg" required maxlength="50">
             </div>            
           </div>';            
     echo '<div class="col-12 col-md-1 p-2">
@@ -92,7 +92,7 @@ echo '</div>';
     echo '<div class="col-12 col-md-2 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Listing URL: </div>
             <div class="d-flex">
-                <input type="text" class="form-control" style="text-align: center;" name="listingUrl" placeholder="Listing URL" required maxlength="50">
+                <input type="text" class="form-control" style="text-align: center;" name="listing_url" placeholder="Listing URL" required maxlength="50">
             </div>            
           </div>';     
     echo '<div class="col-12 col-md-1 p-2">

@@ -35,7 +35,8 @@
 include_once 'data.php';
 
 $data = new Data();
-$itemData = array();
+$items = array();
+$items = $data->getAllListings();
 
 // table made with Bootstrap
 echo '<div class="d-md-flex flex-row flex-nowrap d-none d-md-block flex-row border bg-secondary">';
@@ -48,30 +49,30 @@ echo '<div class="col-12 col-md-3 p-2 text-center font-weight-bold border-right"
 echo '<div class="col-12 col-md-1 p-2 text-center font-weight-bold border-right">Edit</div>';
 echo '</div>';
 
-//loop through collection of files. Get each files content and create a table row
-foreach ($data->getListingsFilenames() as $value)
-    {        
-        $itemData = $data->getListingData($value);        
+//loop through collection of items
+foreach ($items as $item)
+    {                    
         echo '<div class="d-md-flex flex-row align-items-center border-bottom-2 bg-light-blue">';
         echo '<div class="col-12 col-md-1 text-center p-3">
                 <form class="form-inline mx-auto d-block" method="post" action="/inf653/cms/detail.php">
-                    <input type="hidden" name="listingId" value="'.htmlspecialchars($itemData["Listing ID"]).'">
+                    <input type="hidden" name="listingId" value="'.htmlspecialchars($item["listing_id"]).'">
                     <input type="submit" value="Details">
                 </form>  
                 </div>';
         
         echo '<div class="col-12 col-md-1">
-                <a target="_self" href="/inf653/cms/images/full/'.htmlspecialchars($itemData["Listing ID"]).'_full.jpeg">                    
-                <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 80%; height: auto;" src='.htmlspecialchars($itemData["Photo Thumb"]).'></img></a>
+                <a target="_self" href="/inf653/cms/images/full/'.htmlspecialchars($item["listing_id"]).'_full.jpeg">                    
+                <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 80%; height: auto;"
+                             src="data:image/jpeg;base64,'.base64_encode($item["photo_thumb"]).'"></img></a>
                 </div>';              
 
-        echo '<div class="col-12 col-md-3 text-center">'.htmlspecialchars($itemData["Name"]).'</div>';
-        echo '<div class="col-12 col-md-1 text-center">'.htmlspecialchars($itemData["Price"]).'</div>';
-        echo '<div class="col-12 col-md-2 text-center">'.htmlspecialchars($itemData["Location"]).'</div>';
-        echo '<div class="col-12 col-md-3 text-center">'.htmlspecialchars($itemData["Category"]).'</div>';
+        echo '<div class="col-12 col-md-3 text-center">'.htmlspecialchars($item["name"]).'</div>';
+        echo '<div class="col-12 col-md-1 text-center">'.htmlspecialchars($item["price"]).'</div>';
+        echo '<div class="col-12 col-md-2 text-center">'.htmlspecialchars($item["location"]).'</div>';
+        echo '<div class="col-12 col-md-3 text-center">'.htmlspecialchars($item["category"]).'</div>';
         echo '<div class="col-12 col-md-1 text-center p-3">
                 <form class="col form-inline mx-auto d-block" method="post" action="/inf653/cms/editItem.php"">
-                    <input type="hidden" name="listingId" value="'.htmlspecialchars($itemData["Listing ID"]).'">
+                    <input type="hidden" name="listingId" value="'.htmlspecialchars($item["listing_id"]).'">
                     <input type="submit" value="Edit">
                 </form>                    
                 </div>';

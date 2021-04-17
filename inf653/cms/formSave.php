@@ -19,40 +19,24 @@
 include_once 'item.php';
 include_once 'data.php';
 
-$item = new Item();
 $data = new Data();
 $itemData = array();
-
-    //use listingId to get filename for reading from flat file
-    if (isset($_POST["listingId"]))
+   
+    if (isset($_POST["listing_id"]))
     {
-        $item->setListingId(filter_var($_POST["listingId"], FILTER_SANITIZE_STRING)); //clean
-        $item->setName(filter_var($_POST["name"], FILTER_SANITIZE_STRING)); //clean
-        $item->setCategory(filter_var($_POST["category"], FILTER_SANITIZE_STRING)); //clean
-        $item->setPrice(filter_var($_POST["price"], FILTER_SANITIZE_STRING)); //clean
-        $item->setLocation(filter_var($_POST["location"], FILTER_SANITIZE_STRING)); //clean
-        $item->setDescription(filter_var($_POST["description"], FILTER_SANITIZE_STRING)); //clean
-
-        $itemData = $data->getListingIdData($item->getListingId());        
+      $itemData['listing_id'] = filter_var($_POST['listing_id'], FILTER_SANITIZE_STRING);
+      $itemData['name'] = filter_var($_POST['name'], FILTER_SANITIZE_STRING);         
+      $itemData['price'] = filter_var($_POST['price'], FILTER_SANITIZE_STRING);         
+      $itemData['description'] = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
+      $itemData['location'] = filter_var($_POST['location'], FILTER_SANITIZE_STRING);
+      $itemData['category'] = filter_var($_POST['category'], FILTER_SANITIZE_STRING);              
           
         echo '<nav class="navbar bg-dark justify-content-center">';
-        echo '<span class= "navbar-brand text-white font-weight-bold text-center">Saving...  '.$item->getListingId().'</span>';
+        echo '<span class= "navbar-brand text-white font-weight-bold text-center">Saving...  '.$itemData["listing_id"].'</span>';
         echo '</nav>';         
     }    
-    //print_r($itemData);
-    $saveData = array(
-        'Listing ID' => $itemData["Listing ID"],
-        'Name' => $item->getName(),
-        'Photo Full' => $itemData["Photo Full"],
-        'Photo Thumb' => $itemData["Photo Thumb"],
-        'Category' => $item->getCategory(),
-        'Price' => $item->getPrice(),
-        'Location' => $item->getLocation(),
-        'Listing URL' => $itemData["Listing URL"],
-        'Description' => $item->getDescription()
-        );        
-        //print_r($saveData);        
-        $data->putItemData($saveData);
+          
+        $data->putItemData($itemData);
                 
         header("Location: /inf653/cms/index.php");
         exit();    
