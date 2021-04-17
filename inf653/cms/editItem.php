@@ -11,8 +11,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
-  
+    
 </head>
 <body>
 
@@ -50,27 +49,28 @@ $listingId = '';
     {        
         echo '<div class="d-md-flex flex-row align-items-center border-bottom-2 bg-light-blue">';
         echo '<div class="col-12 col-md-6 p-2">
-              <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 50%; height: auto;" src='.$itemData["Photo Full"].'>
+              <img class="img-fluid img-thumbnail mx-auto d-block" style="max-width: 50%; height: auto;"
+              src="data:image/jpeg;base64,'.base64_encode($itemData["photo_full"]).'">
               </img></div>';
         echo '<div class="col-12 col-md-6">';
         echo '<div class="flex-row font-weight-bold p-2">
-                '.$itemData["Name"].'
+                '.$itemData["name"].'
               </div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Price: </div>
-                <div class="d-inline-flex">'.$itemData["Price"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["price"].'</div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Location: </div>
-                <div class="d-inline-flex">'.$itemData["Location"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["location"].'</div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Listing URL: </div>
-                <div class="d-inline-flex"><a class="nav-link font-weight-bold" href="'.$itemData["Listing URL"].'">Listing Site</a></div></div>';
+                <div class="d-inline-flex"><a class="nav-link font-weight-bold" href="'.$itemData["listing_url"].'">Listing Site</a></div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Category: </div>
-                <div class="d-inline-flex">'.$itemData["Category"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["category"].'</div></div>';
         echo '<div class="flex-row p-2">
                 <div class="d-inline-flex font-weight-bold">Description: </div>
-                <div class="d-inline-flex">'.$itemData["Description"].'</div></div>';
+                <div class="d-inline-flex">'.$itemData["description"].'</div></div>';
         echo '</div>';
         echo '</div>';        
     }
@@ -97,37 +97,37 @@ $listingId = '';
     echo '<div class="d-md-flex form-row">';
      
     echo '<div class="col-12 col-md-1 p-2 text-center">                
-            <input type="hidden" name="listingId" value="'.htmlspecialchars($itemData["Listing ID"]).'">
+            <input type="hidden" name="listing_id" value="'.htmlspecialchars($itemData["listing_id"]).'">
             <input type="submit" value="Save">
           </div>';
     echo '<div class="col-12 col-md-2 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Name: </div>
             <div class="d-flex">
-               <input type="text" class="form-control" style="text-align: center;" name="name" value="'.htmlspecialchars($itemData["Name"]).'" required maxlength="100">
+               <input type="text" class="form-control" style="text-align: center;" name="name" value="'.htmlspecialchars($itemData["name"]).'" required maxlength="100">
             </div>            
           </div>';            
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Price: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: right;" name="price" value="'.htmlspecialchars($itemData["Price"]).'"required maxlength="10">
+                <input type="text" class="form-control" style="text-align: right;" name="price" value="'.htmlspecialchars($itemData["price"]).'"required maxlength="10">
             </div>            
           </div>';
     echo '<div class="col-12 col-md-5 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Description: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="description" value="'.htmlspecialchars($itemData["Description"]).'"required maxlength="250">
+                <input type="text" class="form-control" style="text-align: center;" name="description" value="'.htmlspecialchars($itemData["description"]).'"required maxlength="250">
             </div>            
           </div>';
     echo '<div class="col-12 col-md-2 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Location: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="location" value="'.htmlspecialchars($itemData["Location"]).'"required maxlength="50">
+                <input type="text" class="form-control" style="text-align: center;" name="location" value="'.htmlspecialchars($itemData["location"]).'"required maxlength="50">
             </div>           
           </div>';   
     echo '<div class="col-12 col-md-1 p-2">
             <div class="d-md-none d-inline-flex font-weight-bold">Category: </div>
             <div class="d-flex">            
-                <input type="text" class="form-control" style="text-align: center;" name="category" value="'.htmlspecialchars($itemData["Category"]).'"required maxlength="50">
+                <input type="text" class="form-control" style="text-align: center;" name="category" value="'.htmlspecialchars($itemData["category"]).'"required maxlength="50">
             </div>            
           </div>';
 
@@ -138,7 +138,7 @@ $listingId = '';
     
     echo '<div class="col-12 col-md-1 p-2 text-center">';  
     echo '<form method="post" action="/inf653/cms/index.php">
-            <input type="hidden" name="listingId" value="'.htmlspecialchars($itemData["Listing ID"]).'">
+            <input type="hidden" name="listingId" value="'.htmlspecialchars($itemData["listing_id"]).'">
             <input type="submit" value="Cancel">
           </form>';
     echo '</div>'; 
